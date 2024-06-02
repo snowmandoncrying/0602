@@ -8,4 +8,23 @@
                 return x+y;   // 일반 코드
                 더하기 = lambda x,y:x+y  // 람다식 코드 - x,y 는 입력값이고 x+y는 그 입력값들을 더한 결과
         이처럼 프로그래밍에서도 간단하게 함수를 표현할 수 있게 해줌
-              
+
+
+	// 다중 파일 업로드
+	public List<String> multiFileUpload(List<MultipartFile> fileList){
+		List<String> fileNameList = new ArrayList<>();
+		String path = "C:\\spring\\upload\\";
+		fileList.forEach(mf-){
+			String fileName = UUID.randomUUID().toString().replace("-", "") + mf.getOriginalFilename(); 
+			File copy = new File(path+fileName);
+			try {
+				mf.transferTo(copy);
+				fileNameList.add(mf.getOriginalFilename());
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		});
+		return fileNameList;
+	}
+
+파일을 리스트로 받았으니까 반복해주면 된다. >> for문
